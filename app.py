@@ -6,7 +6,7 @@ from datetime import datetime
 # APP INIT 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
-# app.config['SECRET_KEY'] = '09102000'
+app.config['SECRET_KEY'] = '09102000'
 app.static_folder = 'static'
 db = SQLAlchemy(app)
 
@@ -30,8 +30,6 @@ class User(UserMixin, db.Model):
     name = db.Column(db.String(100), nullable = False)
     email = db.Column(db.String(100), nullable = False)
     password = db.Column(db.String(200), nullable = False)
-
-db.create_all()
 
 # APP ROUTING 
 @login_manager.user_loader
