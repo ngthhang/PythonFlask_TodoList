@@ -30,8 +30,6 @@ class User(UserMixin, db.Model):
     name = db.Column(db.String(100), nullable = False)
     email = db.Column(db.String(100), nullable = False)
     password = db.Column(db.String(200), nullable = False)
-    
-db.create_all()
 
 # APP ROUTING 
 @login_manager.user_loader
