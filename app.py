@@ -36,15 +36,15 @@ class User(UserMixin, db.Model):
 def load_user(user_id):
     return User.query.get(user_id)
 
-@app.route('/login', methods = ['POST'])
+@app.route('/', methods = ['POST'])
 def login():
     email = request.form['email']
     password = request.form['password']
     current_user = User.query.filter_by(email=email).first()
     login_user(current_user)
-    return redirect('/')
+    return redirect('/home')
 
-@app.route('/login',methods = ['GET'])
+@app.route('/',methods = ['GET'])
 def get_login():
     return render_template('login.html')
 
@@ -58,13 +58,13 @@ def signup():
     db.session.commit()
     current_user = User.query.filter_by(email=email).first()
     login_user(current_user)
-    return redirect('/')
+    return redirect('/home')
 
 @app.route('/signup', methods = ['GET'])
 def get_signup():
     return render_template('signup.html')
 
-@app.route('/', methods = ['GET','POST'])
+@app.route('/home', methods = ['GET','POST'])
 @login_required
 def index():
     if request.method  == 'POST':
@@ -76,7 +76,7 @@ def index():
             try: 
                 db.session.add(new_task)
                 db.session.commit()
-                return redirect('/')
+                return redirect('/home')
             except:
                 return render_template('error.html', message = 'There is some error in creating your task')
     else:
@@ -90,7 +90,7 @@ def delete(id):
     try:
         db.session.delete(task_to_delete)
         db.session.commit()
-        return redirect('/')
+        return redirect('/home')
     except:
         return render_template('error.html', message = 'there is some error in deleting your task')
 
@@ -103,7 +103,7 @@ def update(id):
         task_to_update.content = request.form['content']
         try:
             db.session.commit()
-            return redirect('/')
+            return redirect('/home')
         except:
             return render_template('error.html',message = 'There is some error in updating your task')
     else: 
@@ -113,7 +113,7 @@ def update(id):
 @login_required
 def logout():
     logout_user()
-    return redirect('/login')
+    return redirect('/')
 
 if __name__ == "__main__":
     app.run(debug=True, port=8000)
