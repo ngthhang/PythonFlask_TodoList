@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block body %}
+    <div class="content">
+        <h1>TodoList</h1>
+
+        <form action="/" method="post">
+            <input type="text" name="content" id="content" class="text-input">
+            <input type="submit" value="Add task" class="button">
+        </form>
+
+        {% if tasks|length < 1 %}
+            <h3>There is no tasks, Please create one !!</h3>
+        {% else %}
+        <table>
+            <tr>
+                <th>Task</th>
+                <th>Added</th>
+                <th>Actions</th>
+            </tr>
+            {% for tasks in tasks %}
+            <tr>
+                <td>{{ tasks.content }}</td>
+                <td>{{ tasks.date_created.date() }}</td>
+                <td>
+                    <a href="/update/{{tasks.id}}" class="table-btn">update</a>
+                    <a href="/delete/{{tasks.id}}" class="table-btn">delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+        {% endif %}
+    </div>
+{% endblock %}
