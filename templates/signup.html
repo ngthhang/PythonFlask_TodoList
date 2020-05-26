@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<div class="content">
+
+    <h1>Welcome to Todolist</h1>
+    <h2>Signup</h2>
+
+    <form action="/signup" method="POST" class="login-form">
+        <label for="username">Your name</label>
+        <input type="text" name="username" id='username' class="login-input">
+        <label for="email">Email</label>
+        <input type="email" name='email' id='email' class="login-input">
+        <label for="password">Password</label>
+        <input type="password" name="password" id="password" class="login-input">
+        <br>
+        <a href="/login">Already have account?</a>
+        <br>
+        <input type="submit" value="Signup" class="button">
+    </form>
+</div>
+{% endblock %}

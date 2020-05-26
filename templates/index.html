@@ -1,6 +1,11 @@
 {% extends 'base.html' %}
 
 {% block body %}
+    <div class="logout-div">
+        <span class="text-name">{{ current_user.name }}</span>
+        <span>{{ current_user.email }}</span>
+        <a href="/logout" class="logout-button">Logout</a>
+    </div>
     <div class="content">
         <h1>TodoList</h1>
 

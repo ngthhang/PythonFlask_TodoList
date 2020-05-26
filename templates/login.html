@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<div class="content">
+
+    <h1>Welcome to Todolist</h1>
+    <h2>Login</h2>
+
+    <form action="/login" method="POST" class="login-form">
+        <label for="email">Email</label>
+        <input type="email" name='email' id='email' class="login-input">
+        <label for="password">Password</label>
+        <input type="password" name="password" id="password" class="login-input">
+        <br>
+        <a href="/signup">Dont have account?</a>
+        <br>
+        <input type="submit" value="Login" class="button">
+    </form>
+</div>
+{% endblock %}
